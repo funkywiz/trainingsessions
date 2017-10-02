@@ -1,0 +1,73 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin>>n;
+    if(n<1||n>100000)
+            return 0;
+    int arr[n];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        cin>>arr[i];
+        if(arr[i]<1||arr[i]>4)
+            return 0;
+    }
+    int one=0,two=0,three=0,four=0,totalcabs=0;
+    for(i=0;i<n;i++)
+    {
+        if(arr[i]==1)
+            one++;
+        if(arr[i]==2)
+            two++;
+        if(arr[i]==3)
+            three++;
+        if(arr[i]==4)
+            four++;
+    }
+    totalcabs+=four;
+    while(three!=0&&one!=0)
+    {
+        totalcabs++;
+        three--;
+        one--;
+    }
+    totalcabs+=three;
+    while(two>1){
+        totalcabs++;
+        two=two-2;
+    }
+    while(one>3)
+    {
+        totalcabs++;
+        one=one-4;
+    }
+    while(two>0&&one>1)
+    {
+       totalcabs++;
+       two--;
+       one=one-2;
+    }
+    while(two>0&&one>0)
+    {
+       totalcabs++;
+       two--;
+       one=one-1;
+    }
+    while(one>2)
+    {
+        totalcabs++;
+        one=one-3;
+    }
+    while(one>1)
+    {
+        totalcabs++;
+        one=one-2;
+    }
+    totalcabs+=two;
+    totalcabs+=one;
+    
+    cout<<totalcabs;
+}
